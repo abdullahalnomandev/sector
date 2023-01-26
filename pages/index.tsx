@@ -1,4 +1,4 @@
-import { Button, Checkbox, Divider, Form, Input, Select } from "antd";
+import { Button, Checkbox, Divider, Form, Input, message, Select } from "antd";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -11,10 +11,22 @@ interface data {
 
 const Home: NextPage = () => {
   const [data, setData] = useState({} as data);
+  const [messageApi, contextHolder] = message.useMessage();
+
   const router = useRouter();
+
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: ` Added successfully.`
+    });
+  };
+
   const onFinish = (values: any) => {
+    success();
     setData(values);
   };
+
   if (data.name) {
     router.push(
       `/data?name=${data.name}&sector=${data.sector}&isActive=${data.isAgree}`
@@ -26,6 +38,8 @@ const Home: NextPage = () => {
 
   return (
     <div>
+      {contextHolder}
+
       <Head>
         <title>Home | Sector Form </title>
         <link rel="icon" href="/favicon.ico" />
@@ -182,7 +196,12 @@ const Home: NextPage = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ width: "100%" }}
+            disabled={data.name ? true : false}
+          >
             Save
           </Button>
         </Form.Item>
