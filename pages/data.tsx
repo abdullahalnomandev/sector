@@ -1,6 +1,6 @@
 import { Breadcrumb, Button, Divider, Result, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { Head } from "next/head";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 interface data {
