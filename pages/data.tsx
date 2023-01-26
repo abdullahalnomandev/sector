@@ -3,13 +3,7 @@ import type { ColumnsType } from "antd/es/table";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-interface data {
-  name: string;
-  sector: String;
-  isAgree: boolean | string;
-}
-
-const columns: ColumnsType<data> = [
+const columns: ColumnsType = [
   {
     title: "Name",
     dataIndex: "name"
@@ -27,7 +21,7 @@ const columns: ColumnsType<data> = [
 const Data = () => {
   const router = useRouter();
   const dataInfo = router.query;
-  const data: data[] = [
+  const data = [
     {
       name: dataInfo?.name || "",
       sector: dataInfo?.sector || "",

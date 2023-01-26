@@ -3,7 +3,6 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Data from "./data";
 interface data {
   name: string;
   sector: String;
@@ -12,8 +11,6 @@ interface data {
 
 const Home: NextPage = () => {
   const [data, setData] = useState({} as data);
-  const [isSubmit, setIsSubmit] = useState(false);
-
   const router = useRouter();
   const onFinish = (values: any) => {
     setData(values);
@@ -26,14 +23,6 @@ const Home: NextPage = () => {
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
-  console.log("data", data);
-  if (isSubmit) {
-    return (
-      <div>
-        <Data data={data} />
-      </div>
-    );
-  }
 
   return (
     <div>
